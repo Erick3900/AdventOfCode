@@ -6,13 +6,13 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
 #include <fmt/format.h>
 
 #include <range/v3/all.hpp>
-#include <range/v3/view/join.hpp>
 
 #define _DEBUG
 #ifdef _DEBUG
@@ -21,7 +21,7 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
 

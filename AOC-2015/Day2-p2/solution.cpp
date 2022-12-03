@@ -6,10 +6,10 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
-#include <fmt/format.h>
 #include <range/v3/all.hpp>
 
 #ifdef _DEBUG
@@ -18,9 +18,12 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
+
+namespace rng = ranges;
+namespace rv = rng::views;
 
 struct box {
     int32_t length;
@@ -34,18 +37,18 @@ int main(int argc, char *argv[]) {
         std::cout.tie(nullptr);
 
 
-    auto input = ranges::istream_view<std::string>(std::cin)
-      | ranges::views::transform([](auto &&el) {
+    auto input = rng::istream_view<std::string>(std::cin)
+      | rv::transform([](auto &&el) {
             constexpr std::string_view delim{ "x" };
-            return ranges::split_view(el, delim);
+            return rng::split_view(el, delim);
         })
-      | ranges::views::transform([](auto &&el) {
+      | rv::transform([](auto &&el) {
             return ranges::transform_view(el, [](auto &&el) {
-                return std::stoi(el | ranges::to<std::string>());
+                return std::stoi(el | rng::to<std::string>());
             });
         })
-      | ranges::views::transform([](auto &&el) {
-            const auto vec = el | ranges::to<std::vector>();
+      | rv::transform([](auto &&el) {
+            const auto vec = el | rng::to<std::vector>();
             return box{ vec[0], vec[1], vec[2] };
         });
 

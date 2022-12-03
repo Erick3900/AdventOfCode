@@ -6,6 +6,7 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
@@ -17,9 +18,12 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
+
+namespace rng = ranges;
+namespace rv = rng::views;
 
 template <typename T>
 class TypeGetter;
@@ -38,8 +42,8 @@ int main(int argc, char *argv[]) {
     int x = 1;
     int y = 1;
 
-    auto input = ranges::istream_view<std::string>(std::cin)
-      | ranges::views::transform([&keypad, &x, &y](auto &&rng) {
+    auto input = rng::istream_view<std::string>(std::cin)
+      | rv::transform([&keypad, &x, &y](auto &&rng) {
             for (const auto &c : rng) {
                 switch(c) {
                     case 'U':
@@ -59,7 +63,7 @@ int main(int argc, char *argv[]) {
 
             return '0' + keypad[y][x];
         })
-      | ranges::to<std::string>();
+      | rng::to<std::string>();
 
       std::cout << input << std::endl;
 }

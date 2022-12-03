@@ -6,11 +6,11 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
 #include <range/v3/all.hpp>
-#include <range/v3/view/istream.hpp>
 
 // #define _DEBUG
 #ifdef _DEBUG

@@ -6,6 +6,7 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
@@ -15,7 +16,7 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
 

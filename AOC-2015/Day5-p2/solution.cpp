@@ -6,6 +6,7 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
@@ -17,9 +18,12 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
+
+namespace rng = ranges;
+namespace rv = rng::views;
 
 template <typename T, size_t... I>
 auto tuple_converter(T&& rng, std::index_sequence<I...>) {
@@ -31,13 +35,13 @@ int main(int argc, char *argv[]) {
         std::cin.tie(nullptr), 
         std::cout.tie(nullptr);
 
-    auto input = ranges::istream_view<std::string>(std::cin)
-      | ranges::views::filter([](auto &&str) -> bool {
+    auto input = rng::istream_view<std::string>(std::cin)
+      | rv::filter([](auto &&str) -> bool {
             int32_t n = 0;
     
-            for (const auto &window : str | ranges::views::sliding(2)) {
-                for (const auto &rng : str | ranges::views::drop(n + 2) | ranges::views::sliding(2)) {
-                    if (ranges::equal(window, rng)) {
+            for (const auto &window : str | rv::sliding(2)) {
+                for (const auto &rng : str | rv::drop(n + 2) | rv::sliding(2)) {
+                    if (rng::equal(window, rng)) {
                         return true;
                     }
                 }
@@ -46,8 +50,8 @@ int main(int argc, char *argv[]) {
         
             return false;
         })
-      | ranges::views::filter([](auto &&str) -> bool {
-            for (const auto &window : str | ranges::views::sliding(3)) {
+      | rv::filter([](auto &&str) -> bool {
+            for (const auto &window : str | rv::sliding(3)) {
                 const auto [first, second, third] = tuple_converter(window, std::make_index_sequence<3>{});
 
                 if (first == third)
@@ -56,7 +60,7 @@ int main(int argc, char *argv[]) {
 
             return false;
         })
-      | ranges::to<std::vector>()
+      | rng::to<std::vector>()
     ;
 
     std::cout << input.size() << std::endl;

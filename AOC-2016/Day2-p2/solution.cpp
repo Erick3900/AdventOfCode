@@ -6,6 +6,7 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
@@ -18,9 +19,12 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
+
+namespace rng = ranges;
+namespace rv = rng::views;
 
 int main(int argc, char *argv[]) {
     std::ios_base::sync_with_stdio(false), 
@@ -38,8 +42,8 @@ int main(int argc, char *argv[]) {
     int x = 0;
     int y = 2;
 
-    auto input = ranges::istream_view<std::string>(std::cin)
-      | ranges::views::transform([&keypad, &x, &y](auto &&rng) {
+    auto input = rng::istream_view<std::string>(std::cin)
+      | rv::transform([&keypad, &x, &y](auto &&rng) {
             const auto constraint_pos = [](auto &x, auto &y) {
                 const auto constraint_val = std::abs(2 - y);
                 return std::clamp(x + 1, constraint_val, 4 - constraint_val);
@@ -61,7 +65,7 @@ int main(int argc, char *argv[]) {
 
             return keypad[y][x];
         })
-      | ranges::to<std::string>();
+      | rng::to<std::string>();
 
     std::cout << input << std::endl;
 }

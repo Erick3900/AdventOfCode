@@ -6,6 +6,7 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
@@ -23,16 +24,16 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
 
 namespace crypto = CryptoPP;
 
 int main(int argc, char *argv[]) {
-    // std::ios_base::sync_with_stdio(false), 
-    //     std::cin.tie(nullptr), 
-    //     std::cout.tie(nullptr);
+    std::ios_base::sync_with_stdio(false), 
+        std::cin.tie(nullptr), 
+        std::cout.tie(nullptr);
 
     std::stringstream ss;
 

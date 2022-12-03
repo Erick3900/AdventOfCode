@@ -6,10 +6,10 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
-#include <bits/utility.h>
 #include <range/v3/all.hpp>
 
 #define _DEBUG
@@ -19,17 +19,17 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
+
+namespace rng = ranges;
+namespace rv = rng::views;
 
 template <typename T, size_t... I>
 auto tuple_converter(T&& rng, std::index_sequence<I...>) {
     return std::make_tuple(rng[I]...);
 }
-
-namespace rng = ranges;
-namespace rv = ranges::views;
 
 int main(int argc, char *argv[]) {
     std::ios_base::sync_with_stdio(false), 

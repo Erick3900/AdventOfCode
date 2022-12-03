@@ -6,6 +6,7 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
@@ -17,9 +18,12 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
+
+namespace rng = ranges;
+namespace rv = rng::views;
 
 template <typename T>
 class TypeGetter;
@@ -35,12 +39,12 @@ int main(int argc, char *argv[]) {
     constexpr std::string_view delim{ ", " };
 
     auto res = input 
-      | ranges::views::split(delim)
-      | ranges::views::transform([](auto &&rng) {
-            const auto instruction = rng | ranges::to<std::string>();
+      | rv::split(delim)
+      | rv::transform([](auto &&rng) {
+            const auto instruction = rng | rng::to<std::string>();
             return std::pair{ instruction[0], std::stoi(instruction.substr(1)) };
         })
-      | ranges::to<std::vector>();
+      | rng::to<std::vector>();
 
     const std::vector<std::pair<int, int>> directions{ 
         std::pair{  0, -1 }, //    UP

@@ -6,6 +6,7 @@
 // Author: Erick Saúl
 // Github: @Erick3900
 // Twitter: @Erick_Alcachofa
+// Mastodon: @alcachofa@social.linux.pizza
 
 #include <bits/stdc++.h>
 
@@ -18,15 +19,15 @@
 #    define debug(x) { (x) };
 #else
 #    define deb(x)
-#    define deb2(x)
+#    define deb2(x, y)
 #    define debug(x)
 #endif
 
-template <typename T>
-class GetType;
-
 namespace rng = ranges;
 namespace rv = ranges::views;
+
+template <typename T>
+class GetType;
 
 int main(int argc, char *argv[]) {
     std::ios_base::sync_with_stdio(false), 
