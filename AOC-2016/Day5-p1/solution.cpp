@@ -1,7 +1,7 @@
-// AOC-2015
-// Day4-p1 
+// AOC-2016
+// Day5-p1 
 // 
-// Date: Saturday November 26, 2022
+// Date: Monday November 28, 2022
 //
 // Author: Erick Saúl
 // Github: @Erick3900
@@ -30,19 +30,22 @@
 namespace crypto = CryptoPP;
 
 int main(int argc, char *argv[]) {
-    // std::ios_base::sync_with_stdio(false), 
-    //     std::cin.tie(nullptr), 
-    //     std::cout.tie(nullptr);
+    std::ios_base::sync_with_stdio(false), 
+        std::cin.tie(nullptr), 
+        std::cout.tie(nullptr);
 
     std::stringstream ss;
 
     crypto::HexEncoder encoder{ new crypto::FileSink(ss) };
 
-    constexpr std::string_view base{ "yzbqklnj" };
+    constexpr std::string_view base{ "ojvtpuvg" };
     
     int64_t iter = 0;
+    int64_t found = 0;
 
-    while (true) {
+    std::string res = "";
+
+    while (found < 8) {
         std::string message = fmt::format("{}{}", base, ++iter);
         std::string digest;
 
@@ -60,13 +63,14 @@ int main(int argc, char *argv[]) {
         const std::string hash_result = ss.str();
         ss = std::stringstream{};
         
-        while (hash_result[zero_count] == '0') {
+        while (zero_count < 6 && hash_result[zero_count] == '0') {
             ++zero_count;
 
             if (zero_count == 5) {
-                std::cout << iter << std::endl;
-                return 0;
+                res += hash_result[5];
+                ++found;
             }
         }
     }
+    std::cout << res << std::endl;
 }

@@ -68,9 +68,5 @@ int main(int argc, char *argv[]) {
                 return 0;
             }
         }
-
-        if ((iter % 1000) == 0) {
-            std::cout << iter << std::endl;
-        }
     }
 }

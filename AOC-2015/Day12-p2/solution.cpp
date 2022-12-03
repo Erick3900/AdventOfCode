@@ -28,12 +28,14 @@ int main(int argc, char *argv[]) {
         std::cin.tie(nullptr), 
         std::cout.tie(nullptr);
 
-    std::ifstream input_file{ "./Day12-p1/input.txt" };
+    std::string line;
+    std::getline(std::cin, line);
+
+    std::stringstream ss{ line };
+
     nlh::json json_input;
 
-    input_file >> json_input;
-
-    std::function<void(const nlh::json &)> recurse_object;
+    ss >> json_input;    std::function<void(const nlh::json &)> recurse_object;
 
     int64_t total_sum = 0;
         
