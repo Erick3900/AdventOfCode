@@ -36,7 +36,7 @@ struct fs_node {
     std::vector<std::unique_ptr<fs_node>> childs;
 };
 
-void read_fs(fs_node *curr_node, std::stack<fs_node *> &st_helper, int lvl);
+void read_fs(fs_node *curr_node, std::stack<fs_node *> &st_helper);
 
 int64_t update_sizes(fs_node *curr_node);
 
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 
     st_helper.push(root.get());
 
-    read_fs(root.get(), st_helper, 0);
+    read_fs(root.get(), st_helper);
     update_sizes(root.get());
 
     constexpr const int64_t FS_SIZE = 70000000;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     std::cout << calculate_free_required(root.get(), REQ_SIZE) << std::endl;
 }
 
-void read_fs(fs_node *curr_node, std::stack<fs_node *> &st_helper, int lvl) {
+void read_fs(fs_node *curr_node, std::stack<fs_node *> &st_helper) {
     std::string line;
 
     if (! std::getline(std::cin, line)) {
@@ -85,17 +85,17 @@ void read_fs(fs_node *curr_node, std::stack<fs_node *> &st_helper, int lvl) {
                 while (st_helper.size() > 1) {
                     st_helper.pop();
                 }
-                return read_fs(st_helper.top(), st_helper, 0);
+                return read_fs(st_helper.top(), st_helper);
             }
             else if (tokens[2] == "..") {
                 st_helper.pop();
-                return read_fs(st_helper.top(), st_helper, lvl - 1); 
+                return read_fs(st_helper.top(), st_helper); 
             }
             else {
                 for (auto &child : curr_node->childs) {
                     if (child->name == tokens[2]) {
                         st_helper.push(child.get());
-                        return read_fs(child.get(), st_helper, lvl + 1);
+                        return read_fs(child.get(), st_helper);
                     }
                 }
             }
@@ -117,7 +117,7 @@ void read_fs(fs_node *curr_node, std::stack<fs_node *> &st_helper, int lvl) {
 
     }
     
-    read_fs(curr_node, st_helper, lvl);
+    read_fs(curr_node, st_helper);
 }
 
 int64_t update_sizes(fs_node *curr_node) {
