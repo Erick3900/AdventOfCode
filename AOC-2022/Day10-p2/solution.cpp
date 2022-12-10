@@ -64,6 +64,8 @@ int main(int argc, char *argv[]) {
 
     int ans = 0;
 
+    std::cout << std::endl << "\t\t";
+
     for (int i = 0; i < program.size(); ++n_cycle) {       
         if ((n_cycle - curr_op_st) == duration.at(program[i].first)) {
             curr_op_st = n_cycle;
@@ -73,19 +75,21 @@ int main(int argc, char *argv[]) {
             ++i;
         }
 
-        if (i == program.size())
+        if (i == program.size()) {
+            std::cout << std::endl;
             break;
+        }
         
         if (std::abs(register_x - beam_pos) <= 1) {
-            std::cout << '#';
+            std::cout << "█";
         }
         else {
-            std::cout << '.';
+            std::cout << ' ';
         }
 
         beam_pos = (beam_pos + 1) % 40;
 
         if (beam_pos == 0)
-            std::cout << std::endl;
+            std::cout << std::endl << "\t\t";
     }
 }
