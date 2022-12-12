@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
     // The idea of how to get the modulus number was from reddit
     // TODO: Generate the primes so the solution would work for any input
     auto getMOD = [&monkeys](){
-        int iter = 1;
+        int64_t iter = 1;
         bool condition = false;
 
         while (! condition) {
