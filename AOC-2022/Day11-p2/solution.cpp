@@ -30,9 +30,6 @@ namespace rv = rng::views;
 template <typename T>
 struct GetType;
 
-// SPOILER FROM REDDIT
-// constexpr const int64_t MOD{ 9699690 };
-
 struct Monkey {
     int monkeyId;
 
@@ -59,23 +56,15 @@ int main(int argc, char *argv[]) {
 
     std::vector<Monkey> monkeys = parseInput();
 
-    // The idea of how to get the modulus number was from reddit
-    // TODO: Generate the primes so the solution would work for any input
+    // The idea of how to get the modulus number was spoilered from reddit
     auto getMOD = [&monkeys](){
-        int64_t iter = 1;
-        bool condition = false;
+        int64_t lcm = 1;
 
-        while (! condition) {
-            condition = true;
-
-            for (const auto &monkey : monkeys) {
-                condition = condition && ((iter % monkey.modValue) == 0);
-            }
-
-            iter++;
+        for (int i = 0; i < monkeys.size(); ++i) {
+            lcm = ((monkeys[i].modValue * lcm) / std::gcd(monkeys[i].modValue, lcm));
         }
 
-        return iter - 1;
+        return lcm;
     };
 
     const int64_t MOD = getMOD();
