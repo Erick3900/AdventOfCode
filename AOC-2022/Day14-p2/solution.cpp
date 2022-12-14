@@ -12,6 +12,7 @@
 
 #include <range/v3/all.hpp>
 #include <fmt/format.h>
+#include <fmt/chrono.h>
 
 #define _DEBUG
 #ifdef _DEBUG
@@ -105,8 +106,6 @@ int main(int argc, char *argv[]) {
 matrix_t parseInput(std::istream &in) {
     int maxX = std::numeric_limits<int>::min();
     int maxY = std::numeric_limits<int>::min();
-    int minX = std::numeric_limits<int>::max();
-    int minY = std::numeric_limits<int>::max();
 
     auto parsedLines = rng::getlines(in)
         | rv::transform([&](const std::string &line) {
@@ -141,8 +140,6 @@ matrix_t parseInput(std::istream &in) {
 
                 maxX = std::max(maxX, x);
                 maxY = std::max(maxY, y);
-                minX = std::min(minX, x);
-                minY = std::min(minY, y);
 
                 coordsList.push_back({ x, y });
             }
