@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
-set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
+set(CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/conan)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/conan)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -14,29 +14,26 @@ project(
     LANGUAGES CXX
 )
 
-set(PROJECT_AUTHOR "Erick Saúl")
-set(PROJECT_AUTHOR_GITHUB "@Erick3900")
-
-add_subdirectory(configured_files)
-
 find_package(fmt CONFIG REQUIRED)
 find_package(range-v3 CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(cryptopp CONFIG REQUIRED)
 
-file(GLOB_RECURSE SOURCES "*/solution.cpp")
+file(GLOB_RECURSE SOURCES "Day*/p*/solution.cpp")
 
 foreach(FILE IN LISTS SOURCES)
     cmake_path(GET FILE PARENT_PATH FILE_PARENT)
-    cmake_path(GET FILE_PARENT STEM PROBLEM_NAME)
+    cmake_path(GET FILE_PARENT STEM PROBLEM_PART)
+    cmake_path(GET FILE_PARENT PARENT_PATH PROBLEM_PATH)
+    cmake_path(GET PROBLEM_PATH STEM PROBLEM_DAY)
 
     add_executable(
-        ${PROBLEM_NAME}
+        ${PROBLEM_DAY}-${PROBLEM_PART}
             ${FILE}
     )
     
     target_link_libraries(
-        ${PROBLEM_NAME} PRIVATE
+        ${PROBLEM_DAY}-${PROBLEM_PART} PRIVATE
             fmt::fmt
             range-v3::range-v3
             cryptopp::cryptopp
@@ -44,15 +41,10 @@ foreach(FILE IN LISTS SOURCES)
     )
 
     set_target_properties(
-        ${PROBLEM_NAME} PROPERTIES
+        ${PROBLEM_DAY}-${PROBLEM_PART} PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY ${FILE_PARENT}
             RUNTIME_OUTPUT_NAME "solution"
             SUFFIX ""
-    )
-
-    target_include_directories(
-        ${PROBLEM_NAME} PRIVATE
-            ${CMAKE_BINARY_DIR}/configured_files/include
     )
 endforeach()
 

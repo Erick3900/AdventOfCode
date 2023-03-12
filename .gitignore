@@ -7,10 +7,13 @@
 # Unignore all dirs
 !*/
 
+**/.vscode/**
 **/.cache/**
+**/.idea/**
 **/.vim/**
 
 **/build/**
+**/conan/**
 **/.arti.template*
 
 **/output.txt/**

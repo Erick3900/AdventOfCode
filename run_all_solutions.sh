@@ -14,16 +14,17 @@ do
 
         for day in {1..25}
         do
-            if [[ -d "AOC-20$n/Day$day-p1" ]] || [[ -d "AOC-20$n/Day$day-p2" ]]
+            if [[ -d "AOC-20$n/Day$day" ]] || [[ -d "AOC-20$n/Day$day" ]]
             then 
                 echo "* Day $(printf "%2d" $day)"
             fi
             for part in {1..2}
             do
-                problem_folder="AOC-20$n/Day$day-p$part"
+                problem_folder="AOC-20$n/Day$day/p$part"
+                input_file="AOC-20$n/Day$day/input.txt"
                 if [[ -d "$problem_folder" ]] && [[ -f "$problem_folder/solution" ]]
                 then
-                    echo "  * Part $part: $(./$problem_folder/solution < ./$problem_folder/input.txt)"
+                    echo "  * Part $part: $(./$problem_folder/solution < ./$input_file)"
                 fi
             done
         done
