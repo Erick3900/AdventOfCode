@@ -13,8 +13,8 @@
 **/.vim/**
 
 **/build/**
-**/conan/**
-**/.arti.template*
+
+**/CMakeUserPresets.json
 
 **/output.txt/**
 

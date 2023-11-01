@@ -5,4 +5,5 @@ cryptopp/8.7.0
 nlohmann_json/3.11.2
 
 [generators]
-cmake_find_package_multi
+CMakeDeps
+CMakeToolchain
